@@ -34,7 +34,6 @@ SRC_DIRS = [
     'exit',
     'internal',
     'ldso',
-    'locale'
     'locale',
     'malloc',
     'math',
