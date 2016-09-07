@@ -28,204 +28,297 @@ verbose = False
 
 # TODO add 'time'.
 SRC_DIRS = [
-    'ctype', 'env', 'errno', 'exit', 'internal', 'ldso', 'malloc', 'math',
-    'prng', 'regex', 'stdio', 'string', 'stdlib', 'unistd']
-BLACKLIST = [
-    'puts.c',  # The JS version is nicer for now.
-    'strsignal.c', '__ctype_get_mb_cur_max.c',
-    'printf.c', 'fprintf.c', 'fscanf.c', 'vfprintf.c', 'asprintf.c',
-    'dprintf.c', 'scanf.c', 'sprintf.c', 'snprintf.c', 'sscanf.c',
-    'vfscanf.c', 'vsnprintf.c',
-    'qsort.c', 'regexec.c', 'regcomp.c', 'strftime.c', 'strptime.c',
-    'faccessat.c', 'floatscan.c', 'getcwd.c', 'glob.c', 'pclose.c',
-    '__tz.c', 'pwrite.c', 'pread.c', '__fdopen.c', '__fopen_rb_ca.c',
-    '__rem_pio2_large.c', '__stdio_write.c',
-    '__stdout_write.c', 'vdprintf.c',
-    '__year_to_secs.c', 'tcgetpgrp.c', 'tcsetpgrp.c', 'timer_create.c',
-    'tmpfile.c', 'utime.c', 'wcsftime.c',
-    'dlerror.c', 'exit.c', 'abort.c', '_Exit.c', '__libc_start_main.c',
-    # Wide characters.
-    'fgetwc.c', 'getw.c', 'vfwprintf.c',
-    'fgetws.c', 'getwc.c', 'vfwscanf.c',
-    'fputwc.c', 'getwchar.c', 'vswprintf.c',
-    'fputws.c', 'swprintf.c', 'vswscanf.c',
-    'swscanf.c', 'vwprintf.c',
-    'fwprintf.c', 'putw.c', 'vwscanf.c', 'fwscanf.c',
-    'putwc.c', 'wprintf.c', 'open_wmemstream.c',
-    'fwscanf.c', 'putwchar.c', 'ungetwc.c', 'wscanf.c', 'fwide.c',
-    'iswctype.c', 'iswupper.c', 'towctrans.c', 'wctrans.c', 'iswgraph.c',
-    'iswblank.c', 'iswpunct.c', 'wcwidth.c', 'iswspace.c', 'iswxdigit.c',
-    'wcswidth.c', 'iswcntrl.c', 'iswalnum.c', 'iswalpha.c', 'iswlower.c',
-    'iswprint.c', 'iswdigit.c', 'wcsdup.c', 'wcsncmp.c', 'wcscpy.c',
-    'wcstok.c', 'wcpncpy.c', 'wcsrchr.c', 'wmemchr.c', 'wcsspn.c',
-    'wmemcpy.c', 'wcscspn.c', 'wcscasecmp_l.c', 'wcsncat.c', 'wcsncasecmp_l.c',
-    'wmemmove.c', 'wcscasecmp.c', 'wcspbrk.c', 'wcschr.c', 'wmemcmp.c',
-    'wcpcpy.c', 'wcsnlen.c', 'wcsstr.c', 'wmemset.c', 'wcscmp.c', 'wcsncpy.c',
-    'wcswcs.c', 'wcscat.c', 'wcslen.c', 'wcsncasecmp.c',
-    # stdio file lock.
-    'flockfile.c', 'ftrylockfile.c', 'funlockfile.c', '__lockfile.c'
+    'ctype',
+ 'env',
+ 'errno',
+ 'exit',
+ 'internal',
+ 'ldso',
+ 'malloc',
+ 'math',
+'prng',
+ 'regex',
+ 'stdio',
+ 'string',
+ 'stdlib',
+ 'unistd',
+ 'locale'
 ]
-WARNINGS = ['-Wno-incompatible-library-redeclaration',
-            '-Wno-shift-op-parentheses',
-            '-Wno-ignored-attributes',
-            '-Wno-bitwise-op-parentheses',
-            '-Wno-pointer-sign',
-            '-Wno-unknown-pragmas']
+
+BLACKLIST = [
+    # The JS version is nicer for now.
+    'puts.c',  
+
+    '_Exit.c',
+    '__ctype_get_mb_cur_max.c',
+    '__fdopen.c',
+    '__fopen_rb_ca.c',
+    '__libc_start_main.c',
+    '__rem_pio2_large.c',
+    '__stdio_write.c',
+    '__stdout_write.c',
+    '__tz.c',
+    '__year_to_secs.c',
+    'abort.c',
+    'asprintf.c',
+    'dlerror.c',
+    'dprintf.c',
+    'exit.c',
+    'faccessat.c',
+    'floatscan.c',
+    'fprintf.c',
+    'fscanf.c',
+    'getcwd.c',
+    'glob.c',
+    'pclose.c',
+    'pread.c',
+    'printf.c',
+    'pwrite.c',
+    'qsort.c',
+    'regcomp.c',
+    'regexec.c',
+    'scanf.c',
+    'snprintf.c',
+    'sprintf.c',
+    'sscanf.c',
+    'strftime.c',
+    'strptime.c',
+    'strsignal.c',
+    'tcgetpgrp.c',
+    'tcsetpgrp.c',
+    'timer_create.c',
+    'tmpfile.c',
+    'utime.c',
+    'vdprintf.c',
+    'vfprintf.c',
+    'vfscanf.c',
+    'vsnprintf.c',
+    'wcsftime.c',
+
+
+    # Wide characters.
+    'fgetwc.c',
+    'fgetws.c',
+    'fputwc.c',
+    'fputws.c',
+    'fwide.c',
+    'fwprintf.c',
+    'fwscanf.c',
+    'fwscanf.c',
+    'getw.c',
+    'getwc.c',
+    'getwchar.c',
+    'iswalnum.c',
+    'iswalpha.c',
+    'iswblank.c',
+    'iswcntrl.c',
+    'iswctype.c',
+    'iswdigit.c',
+    'iswgraph.c',
+    'iswlower.c',
+    'iswprint.c',
+    'iswpunct.c',
+    'iswspace.c',
+    'iswupper.c',
+    'iswxdigit.c',
+    'open_wmemstream.c',
+    'putw.c',
+    'putwc.c',
+    'putwchar.c',
+    'swprintf.c',
+    'swscanf.c',
+    'towctrans.c',
+    'ungetwc.c',
+    'vfwprintf.c',
+    'vfwscanf.c',
+    'vswprintf.c',
+    'vswscanf.c',
+    'vwprintf.c',
+    'vwscanf.c',
+    'wcpcpy.c',
+    'wcpncpy.c',
+    'wcscasecmp.c',
+    'wcscasecmp_l.c',
+    'wcscat.c',
+    'wcschr.c',
+    'wcscmp.c',
+    'wcscpy.c',
+    'wcscspn.c',
+    'wcsdup.c',
+    'wcslen.c',
+    'wcsncasecmp.c',
+    'wcsncasecmp_l.c',
+    'wcsncat.c',
+    'wcsncmp.c',
+    'wcsncpy.c',
+    'wcsnlen.c',
+    'wcspbrk.c',
+    'wcsrchr.c',
+    'wcsspn.c',
+    'wcsstr.c',
+    'wcstok.c',
+    'wcswcs.c',
+    'wcswidth.c',
+    'wctrans.c',
+    'wcwidth.c',
+    'wmemchr.c',
+    'wmemcmp.c',
+    'wmemcpy.c',
+    'wmemmove.c',
+    'wmemset.c',
+    'wprintf.c',
+    'wscanf.c',
+
+    # stdio file lock.
+    '__lockfile.c',
+    'flockfile.c',
+    'ftrylockfile.c',
+    'funlockfile.c',
+]
+
+warnings = [
+    '-Wno-bitwise-op-parentheses',
+    '-Wno-ignored-attributes',
+    '-Wno-incompatible-library-redeclaration',
+    '-Wno-pointer-sign',
+    '-Wno-shift-op-parentheses',
+    '-Wno-unknown-pragmas',
+]
 
 
 def check_output(cmd, **kwargs):
-  cwd = kwargs.get('cwd', os.getcwd())
-  if verbose:
-    c = ' '.join('"' + c + '"' if ' ' in c else c for c in cmd)
-    print '  `%s`, cwd=`%s`' % (c, cwd)
-  return subprocess.check_output(cmd, cwd=cwd)
+    cwd = kwargs.get('cwd', os.getcwd())
+    if verbose:
+        c = ' '.join('"' + c + '"' if ' ' in c else c for c in cmd)
+        print '    `%s`, cwd=`%s`' % (c, cwd)
+    return subprocess.check_output(cmd, cwd=cwd)
 
 
 def change_extension(path, new_extension):
-  return path[:path.rfind('.')] + new_extension
+    return path[:path.rfind('.')] + new_extension
 
 
 def create_version(musl):
-  """musl's Makefile creates version.h"""
-  script = os.path.join(musl, 'tools', 'version.sh')
-  version = check_output(['sh', script], cwd=musl).strip()
-  with open(os.path.join(musl, 'src', 'internal', 'version.h'), 'w') as v:
-    v.write('#define VERSION "%s"\n' % version)
+    """musl's Makefile creates version.h"""
+    script = os.path.join(musl, 'tools', 'version.sh')
+    version = check_output(['sh', script], cwd=musl).strip()
+    with open(os.path.join(musl, 'src', 'internal', 'version.h'), 'w') as v:
+        v.write('#define VERSION "%s"\n' % version)
 
 
 def build_alltypes(musl, arch):
-  """Emulate musl's Makefile build of alltypes.h."""
-  mkalltypes = os.path.join(musl, 'tools', 'mkalltypes.sed')
-  inbits = os.path.join(musl, 'arch', arch, 'bits', 'alltypes.h.in')
-  intypes = os.path.join(musl, 'include', 'alltypes.h.in')
-  out = check_output(['sed', '-f', mkalltypes, inbits, intypes])
-  with open(os.path.join(musl, 'arch', arch, 'bits', 'alltypes.h'), 'w') as o:
-    o.write(out)
+    """Emulate musl's Makefile build of alltypes.h."""
+    mkalltypes = os.path.join(musl, 'tools', 'mkalltypes.sed')
+    inbits = os.path.join(musl, 'arch', arch, 'bits', 'alltypes.h.in')
+    intypes = os.path.join(musl, 'include', 'alltypes.h.in')
+    out = check_output(['sed', '-f', mkalltypes, inbits, intypes])
+    with open(os.path.join(musl, 'arch', arch, 'bits', 'alltypes.h'), 'w') as o:
+        o.write(out)
 
 
 def musl_sources(musl_root):
-  """musl sources to be built."""
-  sources = []
-  for d in SRC_DIRS:
-    base = os.path.join(musl_root, 'src', d)
-    pattern = os.path.join(base, '*.c')
-    for f in glob.glob(pattern):
-      if os.path.basename(f) in BLACKLIST:
-        continue
-      sources.append(os.path.join(base, f))
-  return sorted(sources)
+    """musl sources to be built."""
+    sources = []
+    for d in SRC_DIRS:
+        base = os.path.join(musl_root, 'src', d)
+        pattern = os.path.join(base, '*.c')
+        for f in glob.glob(pattern):
+            if os.path.basename(f) in BLACKLIST:
+                continue
+            sources.append(os.path.join(base, f))
+    return sorted(sources)
 
 
 def includes(musl, arch):
-  """Include path."""
-  includes = [os.path.join(musl, 'include'),
-              os.path.join(musl, 'src', 'internal'),
-              os.path.join(musl, 'arch', arch)]
-  return list(itertools.chain(*zip(['-I'] * len(includes), includes)))
+    """Include path."""
+    includes = [os.path.join(musl, 'include'),
+                os.path.join(musl, 'src', 'internal'),
+                os.path.join(musl, 'arch', arch)]
+    return list(itertools.chain(*zip(['-I'] * len(includes), includes)))
 
 
 class Compiler(object):
-  """Compile source files."""
+    """Compile source files."""
 
-  def __init__(self, out, clang_dir, binaryen_dir, sexpr_wasm, musl, arch,
-               tmpdir):
-    self.out = out
-    self.outbase = os.path.basename(self.out)
-    self.clang_dir = clang_dir
-    self.binaryen_dir = binaryen_dir
-    self.sexpr_wasm = sexpr_wasm
-    self.musl = musl
-    self.arch = arch
-    self.tmpdir = tmpdir
-    self.compiled = []
+    def __init__(self, out, clang_dir, binaryen_dir, sexpr_wasm, musl, arch, tmpdir):
+        self.out = out
+        self.outbase = os.path.basename(self.out)
+        self.clang_dir = clang_dir
+        self.binaryen_dir = binaryen_dir
+        self.sexpr_wasm = sexpr_wasm
+        self.musl = musl
+        self.arch = arch
+        self.tmpdir = tmpdir
+        self.compiled = []
 
-  def __call__(self, src):
-    target = '--target=wasm32-unknown-unknown'
-    compile_cmd = [os.path.join(self.clang_dir, 'clang'), target,
-                   '-Os', '-emit-llvm', '-S', '-nostdinc']
-    compile_cmd += includes(self.musl, self.arch)
-    compile_cmd += WARNINGS
-    check_output(compile_cmd + [src], cwd=self.tmpdir)
-    return os.path.basename(src)[:-1] + 'll'  # .c -> .ll
+    def __call__(self, src):
+        target = '--target=wasm32-unknown-unknown'
+        compile_cmd = [os.path.join(self.clang_dir, 'clang'), target, '-Os', '-emit-llvm', '-S', '-nostdinc']
+        compile_cmd += includes(self.musl, self.arch)
+        compile_cmd += WARNINGS
+        check_output(compile_cmd + [src], cwd=self.tmpdir)
+        return os.path.basename(src)[:-1] + 'll'    # .c -> .ll
 
-  def compile(self, sources):
-    if verbose:
-      self.compiled = sorted([self(source) for source in sources])
-    else:
-      pool = multiprocessing.Pool()
-      self.compiled = sorted(pool.map(self, sources))
-      pool.close()
-      pool.join()
+    def compile(self, sources):
+        if verbose:
+            self.compiled = sorted([self(source) for source in sources])
+        else:
+            pool = multiprocessing.Pool()
+            self.compiled = sorted(pool.map(self, sources))
+            pool.close()
+            pool.join()
 
-  def link_assemble(self):
-    bytecode = change_extension(self.out, '.bc')
-    assembly = os.path.join(self.tmpdir, self.outbase + '.s')
-    check_output([os.path.join(self.clang_dir, 'llvm-link'),
-                  '-o', bytecode] + self.compiled,
-                 cwd=self.tmpdir)
-    check_output([os.path.join(self.clang_dir, 'llc'),
-                  bytecode, '-o', assembly],
-                 cwd=self.tmpdir)
-    check_output([os.path.join(self.binaryen_dir, 's2wasm'),
-                  assembly, '--ignore-unknown', '-o', self.out],
-                 cwd=self.tmpdir)
+    def link_assemble(self):
+        bytecode = change_extension(self.out, '.bc')
+        assembly = os.path.join(self.tmpdir, self.outbase + '.s')
+        check_output([os.path.join(self.clang_dir, 'llvm-link'), '-o', bytecode] + self.compiled, cwd=self.tmpdir)
+        check_output([os.path.join(self.clang_dir, 'llc'), bytecode, '-o', assembly], cwd=self.tmpdir)
+        check_output([os.path.join(self.binaryen_dir, 's2wasm'), assembly, '--ignore-unknown', '-o', self.out], cwd=self.tmpdir)
 
-  def binary(self):
-    if self.sexpr_wasm:
-      check_output([self.sexpr_wasm,
-                    self.out, '-o', change_extension(self.out, '.wasm')],
-                   cwd=self.tmpdir)
+    def binary(self):
+        if self.sexpr_wasm:
+            check_output([self.sexpr_wasm, self.out, '-o', change_extension(self.out, '.wasm')], cwd=self.tmpdir)
 
 
 def run(clang_dir, binaryen_dir, sexpr_wasm, musl, arch, out, save_temps):
-  if save_temps:
-    tmpdir = os.path.join(os.getcwd(), 'libc_build')
-    if os.path.isdir(tmpdir):
-      shutil.rmtree(tmpdir)
-    os.mkdir(tmpdir)
-  else:
-    tmpdir = tempfile.mkdtemp()
+    if save_temps:
+        tmpdir = os.path.join(os.getcwd(), 'libc_build')
+        if os.path.isdir(tmpdir):
+            shutil.rmtree(tmpdir)
+        os.mkdir(tmpdir)
+    else:
+        tmpdir = tempfile.mkdtemp()
 
-  try:
-    create_version(musl)
-    build_alltypes(musl, arch)
-    sources = musl_sources(musl)
-    compiler = Compiler(out, clang_dir, binaryen_dir, sexpr_wasm, musl, arch,
-                        tmpdir)
-    compiler.compile(sources)
-    compiler.link_assemble()
-    compiler.binary()
-  finally:
-    if not save_temps:
-      shutil.rmtree(tmpdir)
+    try:
+        create_version(musl)
+        build_alltypes(musl, arch)
+        sources = musl_sources(musl)
+        compiler = Compiler(out, clang_dir, binaryen_dir, sexpr_wasm, musl, arch, tmpdir)
+        compiler.compile(sources)
+        compiler.link_assemble()
+        compiler.binary()
+    finally:
+        if not save_temps:
+            shutil.rmtree(tmpdir)
 
 
 def getargs():
-  import argparse
-  parser = argparse.ArgumentParser(description='Build a hacky wasm libc.')
-  parser.add_argument('--clang_dir', type=str, required=True,
-                      help='Clang binary directory')
-  parser.add_argument('--binaryen_dir', type=str, required=True,
-                      help='binaryen binary directory')
-  parser.add_argument('--sexpr_wasm', type=str, required=False,
-                      help='sexpr-wasm binary')
-  parser.add_argument('--musl', type=str, required=True,
-                      help='musl libc root directory')
-  parser.add_argument('--arch', type=str, default='wasm32',
-                      help='architecture to target')
-  parser.add_argument('--out', '-o', type=str,
-                      default=os.path.join(os.getcwd(), 'musl.wast'),
-                      help='Output file')
-  parser.add_argument('--save-temps', default=False, action='store_true',
-                      help='Save temporary files')
-  parser.add_argument('--verbose', default=False, action='store_true',
-                      help='Verbose')
-  return parser.parse_args()
+    import argparse
+    parser = argparse.ArgumentParser(description='Build a hacky wasm libc.')
+    default_bin_dir = os.path.join(os.getenv('HOME'), 'wasm-install', 'bin')
+    parser.add_argument('--clang_dir', type=str, default=default_bin_dir, help='Clang binary directory')
+    parser.add_argument('--binaryen_dir', type=str, default=default_bin_dir, help='binaryen binary directory')
+    parser.add_argument('--sexpr_wasm', type=str, default=os.path.join(default_bin_dir, 'sexpr-wasm', help='sexpr-wasm binary')
+    parser.add_argument('--musl', type=str, default=os.getcwd(), help='musl libc root directory')
+    parser.add_argument('--arch', type=str, default='wasm32', help='architecture to target')
+    parser.add_argument('--out', '-o', type=str, default=os.path.join(os.getcwd(), 'musl.wast'), help='Output file')
+    parser.add_argument('--save-temps', default=False, action='store_true', help='Save temporary files')
+    parser.add_argument('--verbose', default=False, action='store_true', help='Verbose')
+    return parser.parse_args()
 
 
 if __name__ == '__main__':
-  args = getargs()
-  if args.verbose:
-    verbose = True
-  sys.exit(run(args.clang_dir, args.binaryen_dir, args.sexpr_wasm,
-               args.musl, args.arch, args.out, args.save_temps))
+    args = getargs()
+    if args.verbose:
+        verbose = True
+    sys.exit(run(args.clang_dir, args.binaryen_dir, args.sexpr_wasm, args.musl, args.arch, args.out, args.save_temps))
