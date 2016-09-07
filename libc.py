@@ -29,20 +29,20 @@ verbose = False
 # TODO add 'time'.
 SRC_DIRS = [
     'ctype',
- 'env',
- 'errno',
- 'exit',
- 'internal',
- 'ldso',
- 'malloc',
- 'math',
-'prng',
- 'regex',
- 'stdio',
- 'string',
- 'stdlib',
- 'unistd',
- 'locale'
+    'env',
+    'errno',
+    'exit',
+    'internal',
+    'ldso',
+    'locale'
+    'malloc',
+    'math',
+    'prng',
+    'regex',
+    'stdio',
+    'stdlib',
+    'string',
+    'unistd',
 ]
 
 BLACKLIST = [
@@ -176,7 +176,7 @@ BLACKLIST = [
     'funlockfile.c',
 ]
 
-warnings = [
+WARNINGS = [
     '-Wno-bitwise-op-parentheses',
     '-Wno-ignored-attributes',
     '-Wno-incompatible-library-redeclaration',
