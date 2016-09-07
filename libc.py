@@ -308,7 +308,7 @@ def getargs():
     default_bin_dir = os.path.join(os.getenv('HOME'), 'wasm-install', 'bin')
     parser.add_argument('--clang_dir', type=str, default=default_bin_dir, help='Clang binary directory')
     parser.add_argument('--binaryen_dir', type=str, default=default_bin_dir, help='binaryen binary directory')
-    parser.add_argument('--sexpr_wasm', type=str, default=os.path.join(default_bin_dir, 'sexpr-wasm', help='sexpr-wasm binary')
+    parser.add_argument('--sexpr_wasm', type=str, default=os.path.join(default_bin_dir, 'sexpr-wasm'), help='sexpr-wasm binary')
     parser.add_argument('--musl', type=str, default=os.getcwd(), help='musl libc root directory')
     parser.add_argument('--arch', type=str, default='wasm32', help='architecture to target')
     parser.add_argument('--out', '-o', type=str, default=os.path.join(os.getcwd(), 'musl.wast'), help='Output file')
